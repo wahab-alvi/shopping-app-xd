@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    br
+    .container 
+      a(href="/add").btn.btn-primary(style="float:right") Add Product 
+      br
+    br
+    table.table 
+      thead 
+        tr 
+          th Name
+          th Description
+          th Price
+          th Rating
+          th Cart
+      tbody 
+        each product in products 
+          tr 
+            td=product.name
+            td=product.description
+            td=product.price
+            td
+              -let n=0
+              while n<=4
+                if product.rating-1>=n
+                  span 
+                    i.fa.fa-star(style="color:#FF9529")
+                else
+                  span 
+                    i.fa.fa-star(style="color:#dbdbd7")
+                -n+=1
+            td 
+              a(href="/cart/"+product._id).btn.btn-primary Add to Cart 
